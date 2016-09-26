@@ -5,7 +5,8 @@
     xmlns:local="using:Projeto_SR"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d">
+    mc:Ignorable="d" Background="Black">
+    
 
     <Grid>
         <Grid.Background>
@@ -22,27 +23,30 @@
             <ColumnDefinition Width="81*"/>
             <ColumnDefinition Width="10*"/>
         </Grid.ColumnDefinitions>
-        <TextBox x:Name="textBoxMsg" TextWrapping="Wrap" Text="" Margin="19,6,-1,16" RenderTransformOrigin="0,0" 
-                 Foreground="Black" Background="{x:Null}" BorderBrush="Black" InputScope="Default" SelectionHighlightColor="#FFF70A0A" GotFocus="textBoxMsg_GotFocus" Grid.Row="3" />
+        <TextBox x:Name="textBoxMsg" TextWrapping="Wrap" Text="" Margin="19,6,-1,16" Grid.Row="3" BorderBrush="{x:Null}" Foreground="White" SelectionHighlightColor="#FF767676" >
+            <TextBox.Background>
+                <SolidColorBrush Color="White" Opacity="0.15000000596046448"/>
+            </TextBox.Background>
+        </TextBox>
 
         <ListView x:Name="listViewMsg" Margin="15,2,3,0" BorderBrush="#FFEA1414" IsSynchronizedWithCurrentItem="False" AllowDrop="True" Grid.Row="1" Grid.ColumnSpan="2" SelectionMode="None"/>
 
-        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="21,9,0,0" TextWrapping="Wrap" Text="Fala Job!" VerticalAlignment="Top" FontSize="24" Width="127" Height="35" Foreground="Black">
+        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="21,9,0,0" TextWrapping="Wrap" Text="Fala Job!" VerticalAlignment="Top" FontSize="24" Width="127" Height="35" Foreground="White">
             <TextBlock.Projection>
                 <PlaneProjection CenterOfRotationX="25" CenterOfRotationZ="25" CenterOfRotationY="30"/>
             </TextBlock.Projection>
         </TextBlock>
 
-        <AppBarButton Icon="Important" Foreground="Black" Click="AppBarButton_Click" Background="{x:Null}" Margin="1,0,7,0" HorizontalAlignment="Stretch" Width="Auto" Grid.ColumnSpan="2" Grid.Column="1"  >
+        <AppBarButton Icon="Important" Foreground="White" Click="AppBarButton_Click" Background="{x:Null}" Margin="1,0,7,0" HorizontalAlignment="Stretch" Width="Auto" Grid.ColumnSpan="2" Grid.Column="1"  >
         </AppBarButton>
 
-        <AppBarButton Icon="Setting" Foreground="Black" Click="AppBarButton_Click2" Background="{x:Null}" Margin="216,0,0,0.333" HorizontalAlignment="Stretch" Width="Auto" VerticalAlignment="Stretch"  />
+        <AppBarButton Icon="Setting" Foreground="White" Click="AppBarButton_Click2" Background="{x:Null}" Margin="216,0,0,0.333" HorizontalAlignment="Stretch" Width="Auto" VerticalAlignment="Stretch"  />
 
-        <AppBarButton x:Name="btnEnviar" HorizontalAlignment="Stretch" Icon="Send" Margin="6.533,5.2,10.332,13.948" VerticalAlignment="Stretch" Background="{x:Null}" Foreground="Black" RenderTransformOrigin="0.463,0.505" UseLayoutRounding="False" Width="Auto" d:LayoutRounding="Auto"  Click="btnEnviar_Click" Grid.Row="3" Grid.Column="1">
+        <AppBarButton x:Name="btnEnviar" HorizontalAlignment="Stretch" Icon="Send" Margin="6.533,5.2,10.332,13.948" VerticalAlignment="Stretch" Background="{x:Null}" Foreground="White" RenderTransformOrigin="0.463,0.505" UseLayoutRounding="False" Width="Auto" d:LayoutRounding="Auto"  Click="btnEnviar_Click" Grid.Row="3" Grid.Column="1">
             <AppBarButton.RenderTransform>
                 <CompositeTransform Rotation="0.308" TranslateY="-0.041" SkewY="-0.052" TranslateX="-0.001"/>
             </AppBarButton.RenderTransform>
         </AppBarButton>
-        <Rectangle Margin="7,1,-0.333,9" RadiusY="18" Grid.Row="3" RadiusX="18" Stroke="Black" Grid.ColumnSpan="2"/>
+        <Rectangle Margin="7,1,-0.333,9" RadiusY="18" Grid.Row="3" RadiusX="18" Stroke="White" Grid.ColumnSpan="2"/>
     </Grid>
 </Page>

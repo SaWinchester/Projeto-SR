@@ -25,21 +25,7 @@ namespace Projeto_SR
         public Configuracao()
         {
             this.InitializeComponent();
-            App app = Application.Current as App;
-            textBox.Text = app.ipServidor;
-            GC.SuppressFinalize(app);
-        }
-
-        private void button_Click(object sender, RoutedEventArgs e)
-        {
-            App app = Application.Current as App;
-            app.ipServidor = textBox.Text;
-            GC.SuppressFinalize(app);
-        }
-
-        private void limparIp(object sender, RoutedEventArgs e)
-        {
-            textBox.Text = "";
+            
         }
 
         private void appBarButton_Click(object sender, RoutedEventArgs e)
@@ -49,9 +35,7 @@ namespace Projeto_SR
 
         private void limparConversas(object sender, RoutedEventArgs e)
         {
-            App app = Application.Current as App;
-            app.listViewMsg.Items.Clear();
-            GC.SuppressFinalize(app);
+
         }
     }
 }

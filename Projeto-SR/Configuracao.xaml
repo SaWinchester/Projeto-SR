@@ -5,7 +5,7 @@
     xmlns:local="using:Projeto_SR"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d">
+    mc:Ignorable="d" Background="Black">
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -31,14 +31,9 @@
         <Grid.Background>
             <ImageBrush Stretch="Fill" ImageSource="Imagens/ImageDeFundo.jpg"/>
         </Grid.Background>
-        <TextBox x:Name="textBox" Margin="22,8.667,22,5.333" TextWrapping="Wrap" Text="" RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="5" Grid.Row="6" Grid.Column="1" />
-        <Button x:Name="buttonDefinir" Content="Define Ip" HorizontalAlignment="Stretch" Margin="16,6.667,15,0.999" VerticalAlignment="Stretch" Click="button_Click" Grid.Row="7" Grid.Column="2" BorderBrush="Black" Background="{x:Null}"/>
-        <AppBarButton x:Name="appBarButton" HorizontalAlignment="Stretch" Icon="Back" Margin="5,3,2,3" VerticalAlignment="Stretch" Click="appBarButton_Click" Width="Auto" Grid.ColumnSpan="2"/>
-        <Button x:Name="buttonLimpar" Content="Limpar" HorizontalAlignment="Stretch" Margin="19,5.667,18,1.999" VerticalAlignment="Stretch" Click="button_Click" Grid.Row="7" Grid.Column="4" BorderBrush="Black" Background="{x:Null}"/>
-        <Rectangle Grid.ColumnSpan="5" RadiusY="18" RadiusX="18" Grid.Column="1" Margin="12,22.334,16,25.999" Grid.Row="5" Stroke="Black" Grid.RowSpan="4"/>
-        <TextBlock x:Name="textBlock" Grid.ColumnSpan="4" Grid.Column="1" Margin="40,45.334,25,30.333" Grid.Row="5" TextWrapping="Wrap" Text="Configure o Ip do Servidor:" FontSize="18"/>
-        <Button x:Name="button" Content="Limpar" HorizontalAlignment="Stretch" Margin="32,12,46,8" VerticalAlignment="Stretch" BorderBrush="Black" Background="{x:Null}" Click="limparConversas" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2"/>
-        <TextBlock x:Name="textBlock_Copy" Grid.ColumnSpan="4" Grid.Column="1" Margin="19,36,46,1" Grid.Row="1" TextWrapping="Wrap" Text="Limpa as Conversas:" FontSize="18"/>
-        <Rectangle Grid.ColumnSpan="5" Grid.Column="1" Margin="7,22,16,16" RadiusY="18" Grid.Row="1" RadiusX="18" Grid.RowSpan="3" Stroke="Black"/>
+        <AppBarButton x:Name="appBarButton" HorizontalAlignment="Stretch" Icon="Back" Margin="5,3,2,3" VerticalAlignment="Stretch" Click="appBarButton_Click" Width="Auto" Grid.ColumnSpan="2" Foreground="White" Background="{x:Null}"/>
+        <Button x:Name="button" Content="Limpar" HorizontalAlignment="Stretch" Margin="32,12,46,8" VerticalAlignment="Stretch" BorderBrush="White" Background="{x:Null}" Click="limparConversas" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2" Foreground="White"/>
+        <TextBlock x:Name="textBlock_Copy" Grid.ColumnSpan="4" Grid.Column="1" Margin="19,36,46,1" Grid.Row="1" TextWrapping="Wrap" Text="Limpa as Conversas:" FontSize="18" Foreground="White"/>
+        <Rectangle Grid.ColumnSpan="5" Grid.Column="1" Margin="7,22,16,16" RadiusY="18" Grid.Row="1" RadiusX="18" Grid.RowSpan="3" Stroke="White"/>
     </Grid>
 </Page>

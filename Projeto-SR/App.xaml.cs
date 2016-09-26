@@ -26,10 +26,6 @@ namespace Projeto_SR
         /// Initializes the singleton application object.  This is the first line of authored code
         /// executed, and as such is the logical equivalent of main() or WinMain().
         /// </summary>
-
-        public string ipServidor { get; set; }
-        public ListView listViewMsg { get; set; }
-
         public App()
         {
             Microsoft.ApplicationInsights.WindowsAppInitializer.InitializeAsync(
@@ -37,8 +33,6 @@ namespace Projeto_SR
                 Microsoft.ApplicationInsights.WindowsCollectors.Session);
             this.InitializeComponent();
             this.Suspending += OnSuspending;
-            this.ipServidor = "saw-falajobbr.rhcloud.com";
-            this.listViewMsg = new ListView();
         }
 
         /// <summary>

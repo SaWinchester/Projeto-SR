@@ -4,12 +4,12 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
-    <ProjectGuid>{06101647-9A2B-4A51-95A8-7FDD5C57E2FF}</ProjectGuid>
+    <ProjectGuid>{34622EB0-F0FF-4CB4-B6FB-4FD7EEFDFE0C}</ProjectGuid>
     <OutputType>AppContainerExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Projeto_SR</RootNamespace>
     <AssemblyName>Projeto-SR</AssemblyName>
-    <DefaultLanguage>pt-br</DefaultLanguage>
+    <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
     <TargetPlatformVersion>10.0.10586.0</TargetPlatformVersion>
     <TargetPlatformMinVersion>10.0.10240.0</TargetPlatformMinVersion>
@@ -104,6 +104,7 @@
     <Compile Include="Configuracao.xaml.cs">
       <DependentUpon>Configuracao.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Function\ProcessaAPI.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -135,16 +136,16 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Page Include="Configuracao.xaml">
-      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="MainPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Sobre.xaml">
-      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">

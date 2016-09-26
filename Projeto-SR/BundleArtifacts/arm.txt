@@ -1,2 +1,2 @@
-MainPackage=C:\Users\samuk\OneDrive\Projeto-SR\Projeto-SR\bin\ARM\Release\Projeto-SR_0.1.0.0_ARM.appx
-SymbolPackage=C:\Users\samuk\OneDrive\Projeto-SR\Projeto-SR\AppPackages\Projeto-SR_0.1.0.0_Test\Projeto-SR_0.1.0.0_ARM.appxsym
+MainPackage=C:\Users\samuk\OneDrive\GIT\Projeto-SR\Projeto-SR\bin\ARM\Release\Projeto-SR_0.0.3.0_ARM.appx
+SymbolPackage=C:\Users\samuk\OneDrive\GIT\Projeto-SR\Projeto-SR\AppPackages\Projeto-SR_0.0.3.0_Test\Projeto-SR_0.0.3.0_ARM.appxsym
