@@ -5,9 +5,12 @@
     xmlns:local="using:Projeto_SR"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d" Background="Black">
+    mc:Ignorable="d" Foreground="{x:Null}" Background="Black">
 
     <Grid>
+        <Grid.Background>
+            <ImageBrush Stretch="Fill" ImageSource="Imagens/ImageDeFundo.jpg"/>
+        </Grid.Background>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="15*"/>
             <ColumnDefinition Width="47*"/>
@@ -28,9 +31,7 @@
             <RowDefinition Height="49*"/>
             <RowDefinition Height="42*"/>
         </Grid.RowDefinitions>
-        <Grid.Background>
-            <ImageBrush Stretch="Fill" ImageSource="Imagens/ImageDeFundo.jpg"/>
-        </Grid.Background>
+
         <AppBarButton x:Name="appBarButton" HorizontalAlignment="Stretch" Icon="Back" Margin="5,3,2,3" VerticalAlignment="Stretch" Click="appBarButton_Click" Width="Auto" Grid.ColumnSpan="2" Foreground="White" Background="{x:Null}"/>
         <Button x:Name="button" Content="Limpar" HorizontalAlignment="Stretch" Margin="32,12,46,8" VerticalAlignment="Stretch" BorderBrush="White" Background="{x:Null}" Click="limparConversas" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2" Foreground="White"/>
         <TextBlock x:Name="textBlock_Copy" Grid.ColumnSpan="4" Grid.Column="1" Margin="19,36,46,1" Grid.Row="1" TextWrapping="Wrap" Text="Limpa as Conversas:" FontSize="18" Foreground="White"/>

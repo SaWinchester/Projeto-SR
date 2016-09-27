@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using Projeto_SR.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
@@ -18,9 +20,13 @@ namespace Projeto_SR.Functions
             {
                 HttpClient client = new HttpClient();
                 var response = await client.GetAsync(new Uri(IP_SERVIDOR + "/primeiraconexao"));
-                string result = await response.Content.ReadAsStringAsync();
+                var buffer = await response.Content.ReadAsByteArrayAsync();
+                var byteArray = buffer.ToArray();
+                string resposta = Encoding.UTF8.GetString(byteArray, 0, byteArray.Length);
+
+                Messenger messeger = JsonConvert.DeserializeObject<Messenger>(resposta);
                 client.Dispose();
-                return result;
+                return messeger.mensagem;
 
             }
             catch (Exception e)
@@ -35,13 +41,18 @@ namespace Projeto_SR.Functions
             try
             {
                 string resposta = "";
-
+                Messenger messenger = new Messenger(pergunta);
+                string json = JsonConvert.SerializeObject(messenger);
                 HttpClient client = new HttpClient();
-                HttpContent content = new StringContent(pergunta, System.Text.Encoding.UTF8, "application/json");
+                HttpContent content = new StringContent(json, System.Text.Encoding.UTF8, "application/json");
                 var response = await client.PutAsync(IP_SERVIDOR + "/mensagem", content);
-                resposta = await response.Content.ReadAsStringAsync();
+                var buffer = await response.Content.ReadAsByteArrayAsync();
+                var byteArray = buffer.ToArray();
+                resposta = Encoding.UTF8.GetString(byteArray, 0, byteArray.Length);
 
-                return resposta;
+                Messenger messeger = JsonConvert.DeserializeObject<Messenger>(resposta);
+                client.Dispose();
+                return messeger.mensagem;
 
             }
             catch (Exception e)

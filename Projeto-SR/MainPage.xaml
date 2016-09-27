@@ -6,12 +6,16 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d" Background="Black">
-    
+    <Page.Foreground>
+        <ImageBrush Stretch="Fill"/>
+    </Page.Foreground>
+
 
     <Grid>
         <Grid.Background>
-            <ImageBrush Stretch="None" ImageSource="Imagens/ImageDeFundo.jpg"/>
+            <ImageBrush Stretch="Fill" ImageSource="Imagens/ImageDeFundo.jpg"/>
         </Grid.Background>
+
         <Grid.RowDefinitions>
             <RowDefinition Height="58*"/>
             <RowDefinition Height="614*"/>
@@ -29,7 +33,7 @@
             </TextBox.Background>
         </TextBox>
 
-        <ListView x:Name="listViewMsg" Margin="15,2,3,0" BorderBrush="#FFEA1414" IsSynchronizedWithCurrentItem="False" AllowDrop="True" Grid.Row="1" Grid.ColumnSpan="2" SelectionMode="None"/>
+        <ListView x:Name="listViewMsg" Margin="7,1.667,2.667,0" BorderBrush="#FFEA1414" IsSynchronizedWithCurrentItem="False" AllowDrop="True" Grid.Row="1" Grid.ColumnSpan="2" SelectionMode="None"/>
 
         <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="21,9,0,0" TextWrapping="Wrap" Text="Fala Job!" VerticalAlignment="Top" FontSize="24" Width="127" Height="35" Foreground="White">
             <TextBlock.Projection>

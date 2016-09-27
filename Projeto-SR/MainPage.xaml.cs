@@ -29,6 +29,8 @@ namespace Projeto_SR
         public MainPage()
         {
             this.InitializeComponent();
+
+            conectaComServidor();
         }
 
         private async void conectaComServidor()
@@ -37,7 +39,6 @@ namespace Projeto_SR
             {
                 string resposta = await ProcessaAPI.first_connect();
                 listViewMsg.Items.Add(criaCanvarResposta(resposta));
-
             }
             catch (Exception e)
             {
@@ -91,7 +92,11 @@ namespace Projeto_SR
             image.Width = 68;
             image.Height = 71;
             image.Source = new BitmapImage(new Uri("https://s-media-cache-ak0.pinimg.com/originals/2f/ab/1b/2fab1be7f595a58815389c0ff90ca1fb.png"));
-            Canvas.SetLeft(image, 222);
+            //Verifica possição da Imagem dentro do canvas...
+            int posicaoImg = textBlockMsg.Text.Length * 15;
+            if (posicaoImg < listViewMsg.ActualHeight - 80)
+                Canvas.SetLeft(image, posicaoImg);
+            else Canvas.SetLeft(image, listViewMsg.ActualHeight - 80);
             Canvas.SetTop(image, 5);
 
             if ((textBlockMsg.Text.Length + 3) >= image.ActualHeight)
@@ -99,6 +104,8 @@ namespace Projeto_SR
             else
                 canvasMsg.Height = image.ActualHeight + 3.0;
             canvasMsg.Width = listViewMsg.ActualWidth - 5;
+
+            
 
             canvasMsg.Children.Add(textBlockMsg);
             canvasMsg.Children.Add(image);
