@@ -5,52 +5,72 @@
     xmlns:local="using:Projeto_SR"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d" Background="Black">
+    mc:Ignorable="d" Background="#FF072038" UseSystemFocusVisuals="True">
+
     <Page.Foreground>
         <ImageBrush Stretch="Fill"/>
     </Page.Foreground>
 
-
-    <Grid>
-        <Grid.Background>
-            <ImageBrush Stretch="Fill" ImageSource="Imagens/ImageDeFundo.jpg"/>
-        </Grid.Background>
+    <Grid Background="#FF072038">
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="58*"/>
-            <RowDefinition Height="614*"/>
             <RowDefinition Height="29*"/>
-            <RowDefinition Height="67*"/>
+            <RowDefinition Height="316*"/>
+            <RowDefinition Height="0*"/>
+            <RowDefinition Height="39*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="341*"/>
             <ColumnDefinition Width="81*"/>
             <ColumnDefinition Width="10*"/>
         </Grid.ColumnDefinitions>
-        <TextBox x:Name="textBoxMsg" TextWrapping="Wrap" Text="" Margin="19,6,-1,16" Grid.Row="3" BorderBrush="{x:Null}" Foreground="White" SelectionHighlightColor="#FF767676" >
-            <TextBox.Background>
-                <SolidColorBrush Color="White" Opacity="0.15000000596046448"/>
-            </TextBox.Background>
-        </TextBox>
 
-        <ListView x:Name="listViewMsg" Margin="7,1.667,2.667,0" BorderBrush="#FFEA1414" IsSynchronizedWithCurrentItem="False" AllowDrop="True" Grid.Row="1" Grid.ColumnSpan="2" SelectionMode="None"/>
+        <Border CornerRadius="25" BorderThickness="1"  BorderBrush="#FF247BA0" Margin="7,12,10.2,10" Grid.Row="3">
+            <TextBox  x:Name="textBoxMsg"  TextWrapping="Wrap" Text="" Margin="9,9,9,10" Grid.Row="3" BorderBrush="{x:Null}" Foreground="#FF52B4AB" SelectionHighlightColor="#FF072038" Background="#FF072038" RequestedTheme="Dark" RenderTransformOrigin="0.5,0.5" Padding="2" UseLayoutRounding="False" >
+                <TextBox.Transitions>
+                    <TransitionCollection>
+                        <EntranceThemeTransition IsStaggeringEnabled="True"/>
+                        <PopupThemeTransition/>
+                    </TransitionCollection>
+                </TextBox.Transitions>
+                <TextBox.RenderTransform>
+                    <CompositeTransform />
+                </TextBox.RenderTransform>
+                <TextBox.Projection>
+                    <PlaneProjection  CenterOfRotationX="0" CenterOfRotationY="0"/>
+                </TextBox.Projection>
+            </TextBox>
 
-        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="21,9,0,0" TextWrapping="Wrap" Text="Fala Job!" VerticalAlignment="Top" FontSize="24" Width="127" Height="35" Foreground="White">
+        </Border>
+        <ListView x:Name="listViewMsg" Margin="7,10,3,0" BorderBrush="#FFEA1414" IsSynchronizedWithCurrentItem="False" AllowDrop="True" Grid.Row="1" Grid.ColumnSpan="2" SelectionMode="None" Background="#FF072038">
+
+        </ListView>
+
+        <TextBlock x:Name="textBlock" Margin="21,9,193.2,0" TextWrapping="Wrap" Text="Fala Job!" FontSize="30" Foreground="#FF52B4AB">
             <TextBlock.Projection>
                 <PlaneProjection CenterOfRotationX="25" CenterOfRotationZ="25" CenterOfRotationY="30"/>
             </TextBlock.Projection>
         </TextBlock>
 
-        <AppBarButton Icon="Important" Foreground="White" Click="AppBarButton_Click" Background="{x:Null}" Margin="1,0,7,0" HorizontalAlignment="Stretch" Width="Auto" Grid.ColumnSpan="2" Grid.Column="1"  >
+        <AppBarButton  Foreground="White" Click="AppBarButton_Click" Margin="9.8,0,7,10" HorizontalAlignment="Stretch" Width="Auto" Grid.ColumnSpan="2" Grid.Column="1" VerticalAlignment="Stretch"  >
+            <AppBarButton.Background>
+                <ImageBrush Stretch="Uniform" ImageSource="Assets/ic_info_outline_black_48dp.png"/>
+            </AppBarButton.Background>
         </AppBarButton>
 
-        <AppBarButton Icon="Setting" Foreground="White" Click="AppBarButton_Click2" Background="{x:Null}" Margin="216,0,0,0.333" HorizontalAlignment="Stretch" Width="Auto" VerticalAlignment="Stretch"  />
-
-        <AppBarButton x:Name="btnEnviar" HorizontalAlignment="Stretch" Icon="Send" Margin="6.533,5.2,10.332,13.948" VerticalAlignment="Stretch" Background="{x:Null}" Foreground="White" RenderTransformOrigin="0.463,0.505" UseLayoutRounding="False" Width="Auto" d:LayoutRounding="Auto"  Click="btnEnviar_Click" Grid.Row="3" Grid.Column="1">
-            <AppBarButton.RenderTransform>
-                <CompositeTransform Rotation="0.308" TranslateY="-0.041" SkewY="-0.052" TranslateX="-0.001"/>
-            </AppBarButton.RenderTransform>
+        <AppBarButton Click="AppBarButton_Click2" Margin="235,0,0.2,10" HorizontalAlignment="Stretch" Width="Auto" VerticalAlignment="Stretch"  >
+            <AppBarButton.Background>
+                <ImageBrush Stretch="Uniform" ImageSource="Assets/ic_settings_black_48dp.png"/>
+            </AppBarButton.Background>
         </AppBarButton>
-        <Rectangle Margin="7,1,-0.333,9" RadiusY="18" Grid.Row="3" RadiusX="18" Stroke="White" Grid.ColumnSpan="2"/>
+
+        <AppBarButton x:Name="btnEnviar" HorizontalAlignment="Stretch" Margin="7.8,12,10,7" VerticalAlignment="Stretch" Foreground="{x:Null}" RenderTransformOrigin="0.463,0.505" Width="Auto"  Click="btnEnviar_Click" Grid.Row="3" Grid.Column="1">
+            <AppBarButton.Background>
+                <ImageBrush Stretch="Uniform" ImageSource="Assets/ic_send_black_48dp.png"/>
+            </AppBarButton.Background>
+
+        </AppBarButton>
+
+
     </Grid>
 </Page>

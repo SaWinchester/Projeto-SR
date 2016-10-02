@@ -1,6 +1,10 @@
-﻿using Projeto_SR.Functions;
+﻿using Projeto_SR.DataBase;
+using Projeto_SR.functions;
+using Projeto_SR.Functions;
+using Projeto_SR.Model;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -26,11 +30,47 @@ namespace Projeto_SR
     /// </summary>
     public sealed partial class MainPage : Page
     {
+        private MessengerRepository mr;
+        private int seq;
         public MainPage()
         {
             this.InitializeComponent();
+            RegisterService.registerService();
+            verifica_dados();
+        }
 
-            conectaComServidor();
+        private async void verifica_dados()
+        {
+
+            mr = await DbFunctions.obtem_conexao_bd();
+            List<Messenger> messegers = await DbFunctions.obtem_messeger(mr);
+
+            if (messegers != null && messegers.Count > 0) carrega_mensagens(messegers);
+            else { seq = 0; conectaComServidor(); }
+        }
+
+        private void carrega_mensagens(List<Messenger> messegers)
+        {
+            int indice = 0;
+            seq = messegers[messegers.Count - 1].seq;
+            foreach (var item in messegers)
+            {
+                Debug.Write(item.seq + "  " + item.type + "\n");
+                define_mensagem(item, indice);
+                indice++;
+            }
+        }
+
+        private void define_mensagem(Messenger item, int indice)
+        {
+            if (item.type.Equals("R") && item.seq == indice)
+                listViewMsg.Items.Add(criaCanvarResposta(item.mensagem));
+            else 
+                if (item.type.Equals("P") && item.seq == indice) listViewMsg.Items.Add(criaCanvarPergunta(item.mensagem));
+            else 
+                if (item.type.Equals("R")) listViewMsg.Items.Add(criaCanvarResposta(item.mensagem));
+            else 
+                if(item.type.Equals("P")) listViewMsg.Items.Add(criaCanvarPergunta(item.mensagem));
         }
 
         private async void conectaComServidor()
@@ -38,9 +78,11 @@ namespace Projeto_SR
             try
             {
                 string resposta = await ProcessaAPI.first_connect();
+                Messenger me = new Messenger(resposta, "R",seq++);
+                DbFunctions.salva_messenger(me, mr);
                 listViewMsg.Items.Add(criaCanvarResposta(resposta));
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 listViewMsg.Items.Add(criaCanvarResposta("Ops. Tivemos um problema com o Servidor. Tente Novamente mais tarde...:)"));
             }
@@ -50,65 +92,66 @@ namespace Projeto_SR
         private Canvas criaCanvarResposta(string resposta)
         {
             Canvas canvasMsg = new Canvas();
+
+            ImageBrush ib = new ImageBrush();
+            
+
             TextBlock textBlockMsg = new TextBlock();
             textBlockMsg.Text = resposta;
-            textBlockMsg.Width = listViewMsg.ActualWidth - 85;
+            textBlockMsg.Width = 220;
             textBlockMsg.TextWrapping = TextWrapping.WrapWholeWords;
             textBlockMsg.Foreground = new SolidColorBrush(Colors.White);
-            Canvas.SetLeft(textBlockMsg, 80);
+            Canvas.SetLeft(textBlockMsg, 160);
             Canvas.SetTop(textBlockMsg, 6);
 
-            Image image = new Image();
-            image.Width = 68;
-            image.Height = 71;
-            image.Source = new BitmapImage(new Uri("http://cdn.shopify.com/s/files/1/0185/5092/products/persons-0041.png?v=1369543932"));
-            Canvas.SetLeft(image, -2);
-            Canvas.SetTop(image, 5);
-
-            if ((textBlockMsg.Text.Length + 3) >= image.ActualHeight)
+            if ((textBlockMsg.Text.Length + 3) >= 118)
+            {
+                ib.ImageSource = new BitmapImage(new Uri("ms-appx://Projeto-SR/Assets/balao_respota.png"));
                 canvasMsg.Height = Double.Parse("" + (textBlockMsg.Text.Length + 3));
+            }
             else
-                canvasMsg.Height = image.ActualHeight + 3.0;
-            canvasMsg.Width = listViewMsg.ActualWidth - 5;
+            {
+                ib.ImageSource = new BitmapImage(new Uri("ms-appx://Projeto-SR/Assets/balao_respota_two.png"));
+                canvasMsg.Height = 118;
+            }
+            canvasMsg.Width = listViewMsg.ActualWidth - 5.0;
+            canvasMsg.Background = ib;
 
             canvasMsg.Children.Add(textBlockMsg);
-            canvasMsg.Children.Add(image);
-
             return canvasMsg;
         }
 
         private Canvas criaCanvarPergunta(String pergunta)
         {
             Canvas canvasMsg = new Canvas();
+
+            ImageBrush ib = new ImageBrush();
+            ib.ImageSource = new BitmapImage(new Uri("ms-appx://Projeto-SR/Assets/balao_pergunta.png"));
+            //canvasMsg.Background = ib;
+
             TextBlock textBlockMsg = new TextBlock();
             textBlockMsg.Text = pergunta;
-            textBlockMsg.Width = listViewMsg.ActualWidth - 85;
+            textBlockMsg.Width = 250;
             textBlockMsg.TextWrapping = TextWrapping.Wrap;
             textBlockMsg.Foreground = new SolidColorBrush(Colors.White);
-            Canvas.SetLeft(textBlockMsg, 5);
-            Canvas.SetTop(textBlockMsg, 6);
+            Canvas.SetLeft(textBlockMsg, 15);
+            Canvas.SetTop(textBlockMsg, 12);
 
-            Image image = new Image();
-            image.Width = 68;
-            image.Height = 71;
-            image.Source = new BitmapImage(new Uri("https://s-media-cache-ak0.pinimg.com/originals/2f/ab/1b/2fab1be7f595a58815389c0ff90ca1fb.png"));
-            //Verifica possição da Imagem dentro do canvas...
-            int posicaoImg = textBlockMsg.Text.Length * 15;
-            if (posicaoImg < listViewMsg.ActualHeight - 80)
-                Canvas.SetLeft(image, posicaoImg);
-            else Canvas.SetLeft(image, listViewMsg.ActualHeight - 80);
-            Canvas.SetTop(image, 5);
-
-            if ((textBlockMsg.Text.Length + 3) >= image.ActualHeight)
+            if ((textBlockMsg.Text.Length + 3) >= 118)
+            {
+                //ib.ImageSource = new BitmapImage(new Uri("ms-appx://Projeto-SR/Assets/balao_respota.png"));
                 canvasMsg.Height = Double.Parse("" + (textBlockMsg.Text.Length + 3));
+            }
             else
-                canvasMsg.Height = image.ActualHeight + 3.0;
-            canvasMsg.Width = listViewMsg.ActualWidth - 5;
+            {
+                //ib.ImageSource = new BitmapImage(new Uri("ms-appx://Projeto-SR/Assets/balao_respota_two.png"));
+                canvasMsg.Height = 118;
+            }
+            canvasMsg.Width = listViewMsg.ActualWidth - 15.0;
+            canvasMsg.Background = ib;
 
-            
 
             canvasMsg.Children.Add(textBlockMsg);
-            canvasMsg.Children.Add(image);
 
             return canvasMsg;
         }
@@ -119,8 +162,13 @@ namespace Projeto_SR
             textBoxMsg.Text = "";
             listViewMsg.Items.Add(criaCanvarPergunta(pergunta));
 
+            Messenger me = new Messenger(pergunta, "P",seq++);
+            DbFunctions.salva_messenger(me, mr);
+
             listViewMsg.ScrollIntoView(listViewMsg.Items.ToArray()[listViewMsg.Items.Count - 1]);
             string resposta = await ProcessaAPI.get_serve_response(pergunta);
+            Messenger meResp = new Messenger(resposta, "R", seq++);
+            DbFunctions.salva_messenger(meResp, mr);
             await Task.Delay(TimeSpan.FromSeconds(1));
             listViewMsg.Items.Add(criaCanvarResposta(resposta));
             listViewMsg.ScrollIntoView(listViewMsg.Items.ToArray()[listViewMsg.Items.Count - 1]);
@@ -136,5 +184,13 @@ namespace Projeto_SR
             Frame.Navigate(typeof(Configuracao));
         }
 
+        private void altera_visual(object sender, RoutedEventArgs e)
+        {
+            //#FF52B4AB
+            //textBoxMsg.Back
+            textBoxMsg.Foreground = new SolidColorBrush(Color.FromArgb(100, 82, 180, 171));
+            textBoxMsg.Background = new SolidColorBrush(Color.FromArgb(100, 7, 32, 56));
+            textBoxMsg.SelectionHighlightColor = new SolidColorBrush(Color.FromArgb(100, 233, 123, 34));
+        }
     }
 }

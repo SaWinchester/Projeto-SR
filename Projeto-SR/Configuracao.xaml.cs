@@ -1,10 +1,14 @@
-﻿using System;
+﻿using Projeto_SR.DataBase;
+using Projeto_SR.Model;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -33,9 +37,26 @@ namespace Projeto_SR
             this.Frame.GoBack();
         }
 
-        private void limparConversas(object sender, RoutedEventArgs e)
+        private async void limparConversas(object sender, RoutedEventArgs e)
         {
+            MessengerRepository mr = await DbFunctions.obtem_conexao_bd();
 
+            
+
+            List<Messenger> messengers = await mr.SelectAllMessengerAsync();
+
+            await Task.Delay(TimeSpan.FromSeconds(1));
+
+            foreach (var item in messengers)
+            {
+                await mr.DeleteMessengerAsync(item);
+            }
+            await Task.Delay(TimeSpan.FromSeconds(1));
+
+            await new MessageDialog("Excluindo Conversa!").ShowAsync();
+
+
+            GC.SuppressFinalize(mr);
         }
     }
 }

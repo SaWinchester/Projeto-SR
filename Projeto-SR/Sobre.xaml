@@ -5,12 +5,9 @@
     xmlns:local="using:Projeto_SR"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d" Foreground="{x:Null}" Background="Black">
-
-    <Grid>
-        <Grid.Background>
-            <ImageBrush Stretch="Fill" ImageSource="Imagens/ImageDeFundo.jpg"/>
-        </Grid.Background>
+    mc:Ignorable="d" Foreground="{x:Null}" Background="#FF072038">
+    
+    <Grid Background="#FF072038">
         <Grid.RowDefinitions>
             <RowDefinition Height="52*"/>
             <RowDefinition Height="87*"/>
@@ -28,7 +25,7 @@
             <ColumnDefinition Width="9*"/>
         </Grid.ColumnDefinitions>
         <AppBarButton x:Name="appBarButton" HorizontalAlignment="Left" Icon="Back" Margin="5,3,0,0" VerticalAlignment="Top" Height="45" Click="appBarButton_Click" Grid.ColumnSpan="2" Foreground="White"/>
-        <Rectangle Margin="17,5,9,18" Grid.Column="1" Grid.Row="1" Grid.RowSpan="5" Grid.ColumnSpan="3" Stroke="White"/>
+        <Rectangle Margin="17,5,9,18" Grid.Column="1" Grid.Row="1" Grid.RowSpan="5" Grid.ColumnSpan="3" Stroke="White" Fill="#FF0D2044"/>
         <TextBlock x:Name="textBlock" Margin="2,34,0,0" TextWrapping="Wrap" Text="Projeto-SR" Grid.Column="2" Grid.Row="1" Height="26" VerticalAlignment="Top" Foreground="White"/>
         <TextBlock x:Name="textBlock1" Margin="27,1,77,27" TextWrapping="Wrap" Text="Fundador: Samuel Gonçalves Cunha" Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="3" Foreground="White"/>
         <TextBlock x:Name="textBlock2" Margin="28,28,71,0" TextWrapping="Wrap" Text="Co-Fundador: Rai de Sena Gonçalves" Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="3" Foreground="White"/>

@@ -24,12 +24,12 @@ namespace Projeto_SR.Functions
                 var byteArray = buffer.ToArray();
                 string resposta = Encoding.UTF8.GetString(byteArray, 0, byteArray.Length);
 
-                Messenger messeger = JsonConvert.DeserializeObject<Messenger>(resposta);
+                MessengerJson messeger = JsonConvert.DeserializeObject<MessengerJson>(resposta);
                 client.Dispose();
                 return messeger.mensagem;
 
             }
-            catch (Exception e)
+            catch (Exception)
             {
                return ("Ops. Tivemos um problema com o Servidor. Tente Novamente mais tarde...:)");
             }
@@ -41,7 +41,7 @@ namespace Projeto_SR.Functions
             try
             {
                 string resposta = "";
-                Messenger messenger = new Messenger(pergunta);
+                MessengerJson messenger = new MessengerJson(pergunta);
                 string json = JsonConvert.SerializeObject(messenger);
                 HttpClient client = new HttpClient();
                 HttpContent content = new StringContent(json, System.Text.Encoding.UTF8, "application/json");
@@ -50,12 +50,12 @@ namespace Projeto_SR.Functions
                 var byteArray = buffer.ToArray();
                 resposta = Encoding.UTF8.GetString(byteArray, 0, byteArray.Length);
 
-                Messenger messeger = JsonConvert.DeserializeObject<Messenger>(resposta);
+                MessengerJson messeger = JsonConvert.DeserializeObject<MessengerJson>(resposta);
                 client.Dispose();
                 return messeger.mensagem;
 
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return ("Ops. Tivemos um problema com o Servidor. Tente Novamente mais tarde...:)");
             }
